@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_persian',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
 
     # Apps
     'home.apps.HomeConfig',
+    'accounts.apps.AccountsConfig',
 
     # Libraries
 ]
@@ -127,3 +129,5 @@ STATIC_URL = 'static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets')]
+
+AUTH_USER_MODEL = 'accounts.User'
