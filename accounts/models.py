@@ -9,11 +9,17 @@ class User(AbstractBaseUser):
         verbose_name=_('username'),
         max_length=40,
         unique=True, )
+    email = models.EmailField("پست الکترونیک", unique=True)
+    phone_number = models.CharField("شماره موبایل", max_length=11, unique=True, )
+    melli_code = models.CharField("کد ملی", max_length=10, )
+    avatar = models.FileField(upload_to="users/profile", null=True,
+                              blank=True, verbose_name='عکس پروفایل')
+
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
     objects = UserManager()
-    USERNAME_FIELD = 'username'
+    USERNAME_FIELD = 'phone_number'
 
     class Meta:
         verbose_name = _('user')
