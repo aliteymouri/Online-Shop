@@ -15,11 +15,13 @@ class User(AbstractBaseUser):
     avatar = models.FileField(upload_to="users/profile", null=True,
                               blank=True, verbose_name='عکس پروفایل')
 
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+    is_active = models.BooleanField('وضعیت کاربر', default=True)
+    is_admin = models.BooleanField('مدیر', default=False)
 
     objects = UserManager()
+
     USERNAME_FIELD = 'phone_number'
+    REQUIRED_FIELDS = ['email']
 
     class Meta:
         verbose_name = _('user')
