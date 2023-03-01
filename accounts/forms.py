@@ -7,8 +7,8 @@ from .models import User
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    password1 = forms.CharField(label='گذرواژه', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='تکرار گذرواژه', widget=forms.PasswordInput)
 
     class Meta:
         model = User
@@ -19,13 +19,15 @@ class UserCreationForm(forms.ModelForm):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
-            raise ValidationError("Passwords don't match")
+            raise ValidationError("گذرواژه مشابه نمیباشد")
+        elif len(password1 and password2) < 8:
+            raise ValidationError("طول گذرواژه باید حداقل ۸ کاراکتر باشد")
         return password2
 
     def clean_username(self):
         username = self.cleaned_data.get("username")
         if len(username) < 4:
-            raise ValidationError("username must be at least 4 characters")
+            raise ValidationError("نام کاربری باید شامل حداقل ۴ کاراکتر باشد")
         return username
 
     def save(self, commit=True):

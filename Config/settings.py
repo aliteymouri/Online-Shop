@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
 
     # Libraries
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [
