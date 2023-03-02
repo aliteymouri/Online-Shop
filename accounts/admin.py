@@ -28,5 +28,20 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('username',)
     filter_horizontal = ()
 
+    def has_add_permission(self, req):
+        if req.user.is_admin:
+            return True
+        return False
+
+    def has_change_permission(self, req, obj=None):
+        if req.user.is_admin:
+            return True
+        return False
+
+    def has_delete_permission(self, req, obj=None):
+        if req.user.is_admin:
+            return True
+        return False
+
 
 admin.site.unregister(Group)

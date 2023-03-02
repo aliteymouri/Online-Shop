@@ -4,11 +4,22 @@ from django import forms
 from .models import User
 
 
+def check_number(value):
+    if value[:2] != "09" or len(value) < 11:
+        raise ValidationError('یک شماره تماس معتبر وارد کنید', code='check_number')
+    try:
+        int(value)
+    except:
+        raise ValidationError('یک شماره تماس معتبر وارد کنید', code='check_number')
+
+
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
     password1 = forms.CharField(label='گذرواژه', widget=forms.PasswordInput)
     password2 = forms.CharField(label='تکرار گذرواژه', widget=forms.PasswordInput)
+    phone_number = forms.CharField(widget=forms.TextInput({'placeholder': 'شماره موبایل', 'maxlength': 11}),
+                                   validators=[check_number])
 
     class Meta:
         model = User
@@ -41,6 +52,8 @@ class UserCreationForm(forms.ModelForm):
 
 class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
+    phone_number = forms.CharField(widget=forms.TextInput({'placeholder': 'شماره موبایل', 'maxlength': 11}),
+                                   validators=[check_number])
 
     class Meta:
         model = User
