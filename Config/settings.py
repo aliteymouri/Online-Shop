@@ -132,3 +132,6 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets')]
 
 AUTH_USER_MODEL = 'accounts.User'
+
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
+                           'accounts.authentication.EmailAuthBackend']
