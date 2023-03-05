@@ -30,8 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'admin_persian',
-    'django.contrib.admin',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -44,6 +43,12 @@ INSTALLED_APPS = [
 
     # Libraries
     'django_cleanup',
+
+    # Admin Interface
+    'admin_interface',
+    'admin_persian',
+    'colorfield',
+    'django.contrib.admin',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.locale.LocaleMiddleware",  # Admin Interface Middleware
+
 ]
 
 ROOT_URLCONF = 'Config.urls'
@@ -135,3 +142,11 @@ AUTH_USER_MODEL = 'accounts.User'
 
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
                            'accounts.authentication.EmailAuthBackend']
+
+# Admin Interface Languages
+LANGUAGES = (
+    ("en", ("English")),
+    ("fa", ("Persian")),
+)
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
