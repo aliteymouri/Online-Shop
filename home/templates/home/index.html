@@ -272,20 +272,41 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                    <div class="user-login dropdown">
-                        <a href="" class="btn btn-neutral dropdown-toggle" data-toggle="dropdown"
-                           id="navbarDropdownMenuLink1">
-                            ورود / ثبت نام
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
-                            <div class="dropdown-item">
-                                <a href="{% url 'accounts:sign-in' %}" class="btn btn-info">ورود به دیجی کالا</a>
-                            </div>
-                            <div class="dropdown-item font-weight-bold">
-                                <span>کاربر جدید هستید؟</span> <a class="register" href="#">ثبت‌نام</a>
-                            </div>
-                        </ul>
-                    </div>
+                    {% if request.user.is_authenticated %}
+
+                        <div class="user-login dropdown">
+                            <a href="" class="btn btn-neutral dropdown-toggle" data-toggle="dropdown"
+                               id="navbarDropdownMenuLink1">
+                                ورود به حساب کاربری
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                                <div class="dropdown-item">
+                                    <a href="" class="btn btn-info">پروفایل کاربری</a>
+                                </div>
+                                <div class="dropdown-item font-weight-bold">
+                                    <span>کاربر جدید هستید؟</span> <a class="register" href="#">ثبت‌نام</a>
+                                </div>
+                            </ul>
+                        </div>
+
+                    {% else %}
+
+                        <div class="user-login dropdown">
+                            <a href="" class="btn btn-neutral dropdown-toggle" data-toggle="dropdown"
+                               id="navbarDropdownMenuLink1">
+                                ورود / ثبت نام
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                                <div class="dropdown-item">
+                                    <a href="{% url 'accounts:sign-in' %}" class="btn btn-info">ورود به دیجی کالا</a>
+                                </div>
+                                <div class="dropdown-item font-weight-bold">
+                                    <span>کاربر جدید هستید؟</span> <a class="register" href="#">ثبت‌نام</a>
+                                </div>
+                            </ul>
+                        </div>
+
+                    {% endif %}
                     <div class="cart dropdown">
                         <a href="#" class="btn dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink1">
                             <i class="now-ui-icons shopping_cart-simple"></i>

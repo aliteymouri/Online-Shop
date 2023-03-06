@@ -3,9 +3,10 @@ from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.views import View
 from .forms import *
+from .mixins import *
 
 
-class SignInView(FormView):
+class SignInView(AuthenticatedMixin, FormView):
     template_name = 'account/sign-in.html'
     form_class = SignInForm
 

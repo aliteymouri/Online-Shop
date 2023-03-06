@@ -30,7 +30,21 @@
                         <img src="{% static 'img/logo.png' %}" alt="">
                     </a>
                     <div class="account-box-title text-right">ورود به دیجی کالا</div>
+
+                    {% if form.username.errors %}
+                        {% for error in form.username.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ error }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
                     <div class="account-box-content">
+
+
                         <form class="form-account" method="post">
                             {% csrf_token %}
                             <div class="form-account-title">ایمیل یا شماره موبایل</div>
@@ -69,6 +83,8 @@
                                 <label for="agree">مرا به خاطر داشته باش</label>
                             </div>
                         </form>
+
+
                     </div>
                     <div class="account-box-footer">
                         <span>کاربر جدید هستید؟</span>
