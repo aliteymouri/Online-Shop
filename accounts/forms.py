@@ -59,3 +59,11 @@ class UserChangeForm(forms.ModelForm):
         model = User
         fields = ('username', 'password', 'email', 'phone_number',
                   'melli_code', 'avatar', 'is_active', 'is_admin')
+
+
+class SignInForm(forms.Form):
+    username = forms.CharField(
+        widget=forms.TextInput({'class': 'input-field', 'placeholder': 'ایمیل یا شماره موبایل خود را وارد نمایید'}))
+
+    password = forms.CharField(
+        widget=forms.PasswordInput({'class': 'input-field', 'placeholder': 'رمز عبور خود را وارد نمایید'}))

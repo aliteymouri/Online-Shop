@@ -145,8 +145,8 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
 
 # Admin Interface Languages
 LANGUAGES = (
-    ("en", ("English")),
     ("fa", ("Persian")),
+    ("en", ("English")),
 )
 X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
