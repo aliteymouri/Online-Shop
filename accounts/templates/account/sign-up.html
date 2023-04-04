@@ -37,12 +37,19 @@
                     <div class="account-box-content">
                         <form class="form-account" method="post">
                             {% csrf_token %}
-                            <div class="form-account-title">پست الکترونیک یا شماره موبایل</div>
+                            <div class="form-account-title"> شماره موبایل </div>
                             <div class="form-account-row">
 
                                 <label class="input-label"><i class="now-ui-icons users_single-02"></i></label>
 
-                                {{ form.username }}
+                                {{ form.phone_number }}
+
+                            </div>
+                            <div class="form-account-title"> پست الکترونیک </div>
+                            <div class="form-account-row">
+                                <label class="input-label"><i class="now-ui-icons ui-1_email-85"></i></label>
+
+                                {{ form.email }}
 
                             </div>
                             <div class="form-account-title">کلمه عبور</div>
