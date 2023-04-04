@@ -39,3 +39,13 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
+
+
+class Otp(models.Model):
+    token = models.CharField('توکن اعتبارسنجی', max_length=155, null=True)
+    phone_number = models.CharField('شماره موبایل', max_length=11)
+    code = models.CharField(' کد فعالسازی', max_length=5)
+    expiration_date = models.DateTimeField(' تاریخ انقضا ', auto_now_add=True)
+
+    def __str__(self):
+        return F" : شماره موبایل  {self.phone_number}"
