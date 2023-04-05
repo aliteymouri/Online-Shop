@@ -64,13 +64,23 @@ class SignInForm(forms.Form):
         widget=forms.PasswordInput({'class': 'input-field', 'placeholder': 'رمز عبور خود را وارد نمایید'}))
 
 
-class SignUpForm(forms.Form):
-
+class SignUpForm(forms.ModelForm):
     phone_number = forms.CharField(
         widget=forms.TextInput(
-            {'class': 'input-field', 'placeholder': ' شماره موبایل خود را وارد نمایید'}))
+            {'class': 'input-field', 'placeholder': ' شماره موبایل خود را وارد نمایید ', 'maxlength': 11}),
+        validators=[check_number])
     email = forms.EmailField(
         widget=forms.TextInput(
-            {'class': 'input-field', 'placeholder': ' پست الکترونیک خود را وارد نمایید'}))
+            {'class': 'input-field', 'placeholder': ' پست الکترونیک خود را وارد نمایید '}))
     password = forms.CharField(
-        widget=forms.PasswordInput({'class': 'input-field', 'placeholder': 'رمز عبور خود را وارد نمایید'}))
+        widget=forms.PasswordInput({'class': 'input-field', 'placeholder': ' رمز عبور خود را وارد نمایید '}))
+
+    class Meta:
+        model = User
+        fields = ['phone_number', 'email', 'password']
+
+
+class CheckOtpForm(forms.Form):
+    code = forms.CharField(
+        widget=forms.TextInput(
+            {'class': 'input-field', 'placeholder': ' کد تایید را وارد نمایید', 'maxlength': 5}))

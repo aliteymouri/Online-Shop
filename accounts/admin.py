@@ -2,7 +2,7 @@ from accounts.forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
 from django.contrib import admin
-from accounts.models import User
+from accounts.models import *
 
 
 @admin.register(User)
@@ -11,7 +11,7 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
 
-    list_display = ('is_admin', 'phone_number')
+    list_display = ('phone_number', 'is_admin', 'is_active')
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('phone_number', 'email', 'melli_code', 'avatar', 'password',)}),
@@ -45,3 +45,25 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.unregister(Group)
+
+
+@admin.register(Otp)
+class OtpAdmin(admin.ModelAdmin):
+
+    # Only admin can delete an OTP object
+    def has_delete_permission(self, request, obj=None):
+        if not request.user.is_admin:
+            return False
+        return True
+
+    # Only admin can change an OTP object
+    def has_change_permission(self, request, obj=None):
+        if not request.user.is_admin:
+            return False
+        return True
+
+    # Only admin can delete OTP objects
+    def has_add_permission(self, request):
+        if not request.user.is_admin:
+            return False
+        return True

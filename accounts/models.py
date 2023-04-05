@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+
 from accounts.managers import UserManager
 from django.contrib.auth.models import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
@@ -41,7 +43,17 @@ class Otp(models.Model):
     token = models.CharField('توکن اعتبارسنجی', max_length=155, null=True)
     phone_number = models.CharField('شماره موبایل', max_length=11)
     code = models.CharField(' کد فعالسازی', max_length=5)
-    expiration_date = models.DateTimeField(' تاریخ انقضا ', auto_now_add=True)
+    expiration = models.DateTimeField(' تاریخ انقضا ', auto_now_add=True)
 
     def __str__(self):
         return F" : شماره موبایل  {self.phone_number}"
+
+    def is_not_expired(self):
+        if self.expiration >= timezone.localtime(timezone.now()):
+            return True
+        else:
+            return False
+
+    class Meta:
+        verbose_name_plural = "کدهای اعتبارسنجی"
+        verbose_name = "کد اعتبارسنجی"
