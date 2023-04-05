@@ -11,21 +11,21 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
 
-    list_display = ('username', 'is_admin', 'phone_number')
+    list_display = ('is_admin', 'phone_number')
     list_filter = ('is_admin',)
     fieldsets = (
-        (None, {'fields': ('username', 'phone_number', 'email', 'melli_code', 'avatar', 'password',)}),
+        (None, {'fields': ('phone_number', 'email', 'melli_code', 'avatar', 'password',)}),
         ('Permissions', {'fields': ('is_admin',)}),
     )
 
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'phone_number', 'email', 'password1', 'password2'),
+            'fields': ('phone_number', 'email', 'password1', 'password2'),
         }),
     )
-    search_fields = ('username', 'phone_number')
-    ordering = ('username',)
+    search_fields = ('email', 'phone_number')
+    ordering = ('phone_number',)
     filter_horizontal = ()
 
     def has_add_permission(self, req):

@@ -5,10 +5,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractBaseUser):
-    username = models.CharField(
-        verbose_name=_('username'),
-        max_length=40,
-        unique=True, )
     email = models.EmailField("پست الکترونیک", unique=True)
     phone_number = models.CharField("شماره موبایل", max_length=233, unique=True, )
     melli_code = models.CharField("کد ملی", max_length=10, blank=True)
@@ -28,7 +24,7 @@ class User(AbstractBaseUser):
         verbose_name_plural = _('users')
 
     def __str__(self):
-        return self.username
+        return self.phone_number
 
     def has_perm(self, perm, obj=None):
         return True

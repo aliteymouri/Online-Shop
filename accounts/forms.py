@@ -23,7 +23,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'phone_number', 'email')
+        fields = ('phone_number', 'email')
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -34,12 +34,6 @@ class UserCreationForm(forms.ModelForm):
         elif len(password1 and password2) < 8:
             raise ValidationError("طول گذرواژه باید حداقل ۸ کاراکتر باشد")
         return password2
-
-    def clean_username(self):
-        username = self.cleaned_data.get("username")
-        if len(username) < 4:
-            raise ValidationError("نام کاربری باید شامل حداقل ۴ کاراکتر باشد")
-        return username
 
     def save(self, commit=True):
         # Save the provided password in hashed format
@@ -57,7 +51,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'email', 'phone_number',
+        fields = ('password', 'email', 'phone_number',
                   'melli_code', 'avatar', 'is_active', 'is_admin')
 
 
