@@ -81,5 +81,8 @@ class CheckOtpView(FormView):
         return context
 
 
-class PersonalInfoView(TemplateView):
+class PersonalInfoView(View):
     template_name = 'account/personal_info.html'
+
+    def get(self, req):
+        return render(req,self.template_name, {'instance': req.user})
