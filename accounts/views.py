@@ -9,7 +9,6 @@ from .mixins import *
 from uuid import uuid4
 from .models import Otp
 from random import randint
-
 from accounts import messages
 
 
@@ -40,7 +39,7 @@ class SignUpView(AuthenticatedMixin, CreateView):
 
         token = uuid4().hex
         code = randint(10000, 99999)
-        expiration = timezone.localtime(timezone.now()) + timezone.timedelta(seconds=15)
+        expiration = timezone.localtime(timezone.now()) + timezone.timedelta(minutes=15)
         Otp.objects.create(token=token, code=code, expiration=expiration,
                            phone_number=form.cleaned_data.get('phone_number'))
         print(code)
@@ -80,3 +79,7 @@ class CheckOtpView(FormView):
         otp = Otp.objects.get(token=token)
         context["user"] = User.objects.get(phone_number=otp.phone_number)
         return context
+
+
+class PersonalInfoView(TemplateView):
+    template_name = 'account/personal_info.html'

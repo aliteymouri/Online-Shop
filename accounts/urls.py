@@ -9,4 +9,6 @@ urlpatterns = [
     path('log-out', LogoutView.as_view(next_page='home:home'), name='log-out'),
 
     path('check-otp', CheckOtpView.as_view(), name='check-otp'),
+
+    path('personal-info/', PersonalInfoView.as_view(), name='personal-info'),
 ]

@@ -27,7 +27,7 @@
             <div class="main-content col-12 col-md-7 col-lg-5 mx-auto">
                 <div class="account-box text-center">
                     <a href="#" class="logo">
-                        <img src="assets/img/logo.png" alt="">
+                        <img src="{% static 'img/logo.png' %}" alt="">
                     </a>
                     <div class="account-box-title text-center">به دیجی کالا خوش آمدید</div>
                     <div class="account-box-content">
@@ -40,7 +40,7 @@
                             <ul class="account-box-message-links">
                                 <li>
                                     <div class="parent-btn">
-                                        <a href="#" class="dk-btn dk-btn-info">
+                                        <a href="{% url 'accounts:personal-info' %}" class="dk-btn dk-btn-info">
                                             تکمیل حساب کاربری
                                             <i class="now-ui-icons users_single-02"></i>
                                         </a>
