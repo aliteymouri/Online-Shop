@@ -10,6 +10,8 @@ from uuid import uuid4
 from .models import Otp
 from random import randint
 
+from accounts import messages
+
 
 class SignInView(AuthenticatedMixin, FormView):
     template_name = 'account/sign-in.html'
@@ -23,7 +25,7 @@ class SignInView(AuthenticatedMixin, FormView):
                 login(req, user)
                 return redirect('home:home')
             else:
-                form.add_error('username', 'ایمیل یا گذرواژه وارد شده صحیح نمیباشد.')
+                form.add_error('username', messages.WRONG_PASSWORD_OR_EMAIL)
         return render(req, self.template_name, {'form': form})
 
 
@@ -65,11 +67,11 @@ class CheckOtpView(FormView):
                 login(self.request, user, backend="django.contrib.auth.backends.ModelBackend")
                 otp.delete()
                 return render(self.request, 'account/welcome.html')
-            form.add_error('code', "کد وارد شده صحیح نمیباشد!")
+            form.add_error('code', messages.WRONG_OTP_CODE)
             return render(self.request, self.template_name, {"form": form})
         otp.delete()
         User.objects.get(phone_number=otp.phone_number).delete()
-        form.add_error('code', 'کد وارد شده منقضی شده است لطفا مجدد تلاش کنید!')
+        form.add_error('code', messages.EXPIRED_OTP)
         return render(self.request, self.template_name, {"form": form})
 
     def get_context_data(self, **kwargs):
