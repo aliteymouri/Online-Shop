@@ -25,52 +25,30 @@
     <div class="container">
         <div class="row">
             <div class="main-content col-12 col-md-7 col-lg-5 mx-auto">
-                <div class="account-box">
+                <div class="account-box text-center">
                     <a href="#" class="logo">
-                        <img src="{% static 'img/logo.png' %}" alt="">
+                        <img src="assets/img/logo.png" alt="">
                     </a>
-                    <div class="account-box-title text-right"> فعالسازی حساب  </div>
-
-                    {% if form.code.errors %}
-                        {% for error in form.code.errors %}
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                {{ error }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-
+                    <div class="account-box-title text-center">به دیجی کالا خوش آمدید</div>
                     <div class="account-box-content">
-
-
-                        <form class="form-account" method="post">
-                            {% csrf_token %}
-                            <div class="form-account-title"> کد تایید ارسال شده به  {{ user.phone_number }} را وارد نمایید </div>
-                            <div class="form-account-row">
-                                <label class="input-label"><i class="now-ui-icons users_single-02"></i></label>
-
-                                {{ form.code }}
-
-                            </div>
-
-                            <div class="form-account-row form-account-submit">
-                                <div class="parent-btn">
-                                    <button class="dk-btn dk-btn-info">
-                                        ارسال
-                                        <i class="fa fa-sign-in"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                        </form>
-
-
-                    </div>
-                    <div class="account-box-footer">
-                        <span>قبلا در دیجی کالا ثبت‌نام کرده‌اید؟</span>
-                        <a href="{% url 'accounts:sign-in' %}" class="btn-link-border">وارد شوید</a>
+                        <div class="account-box-message">
+                            <i class="account-box-message-icon now-ui-icons users_single-02"></i>
+                            <h3>حساب کاربری شما در دیجی کالا ساخته شد</h3>
+                            <p>اکنون می‌توانید به صفحه‌ای که در آن بودید بازگردید و یا با تکمیل اطلاعات حساب کاربری
+                                خود به کلیه امکانات و
+                                سرویس‌های دیجی کالا و سرویس‌های وابسته به آن دسترسی داشته باشید</p>
+                            <ul class="account-box-message-links">
+                                <li>
+                                    <div class="parent-btn">
+                                        <a href="#" class="dk-btn dk-btn-info">
+                                            تکمیل حساب کاربری
+                                            <i class="now-ui-icons users_single-02"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li><a href="#" class="btn-link-border">بازگشت به صفحه‌ای که در آن بودید</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

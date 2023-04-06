@@ -38,7 +38,7 @@ class SignUpView(AuthenticatedMixin, CreateView):
 
         token = uuid4().hex
         code = randint(10000, 99999)
-        expiration = timezone.localtime(timezone.now()) + timezone.timedelta(minutes=10)
+        expiration = timezone.localtime(timezone.now()) + timezone.timedelta(seconds=15)
         Otp.objects.create(token=token, code=code, expiration=expiration,
                            phone_number=form.cleaned_data.get('phone_number'))
         print(code)
@@ -53,3 +53,28 @@ class SignUpView(AuthenticatedMixin, CreateView):
 class CheckOtpView(FormView):
     template_name = 'account/check-otp.html'
     form_class = CheckOtpForm
+
+    def form_valid(self, form):
+        token = self.request.GET.get("token")
+        otp = Otp.objects.get(token=token)
+        if otp.is_not_expired():
+            if form.cleaned_data['code'] == otp.code:
+                user = User.objects.get(phone_number=otp.phone_number)
+                user.is_active = True
+                user.save()
+                login(self.request, user, backend="django.contrib.auth.backends.ModelBackend")
+                otp.delete()
+                return render(self.request, 'account/welcome.html')
+            form.add_error('code', "کد وارد شده صحیح نمیباشد!")
+            return render(self.request, self.template_name, {"form": form})
+        otp.delete()
+        User.objects.get(phone_number=otp.phone_number).delete()
+        form.add_error('code', 'کد وارد شده منقضی شده است لطفا مجدد تلاش کنید!')
+        return render(self.request, self.template_name, {"form": form})
+
+    def get_context_data(self, **kwargs):
+        context = super(CheckOtpView, self).get_context_data(**kwargs)
+        token = self.request.GET.get("token")
+        otp = Otp.objects.get(token=token)
+        context["user"] = User.objects.get(phone_number=otp.phone_number)
+        return context

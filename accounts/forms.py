@@ -83,4 +83,4 @@ class SignUpForm(forms.ModelForm):
 class CheckOtpForm(forms.Form):
     code = forms.CharField(
         widget=forms.TextInput(
-            {'class': 'input-field', 'placeholder': ' کد تایید را وارد نمایید', 'maxlength': 5}))
+            {'class': 'input-field', 'placeholder': ' کد تایید را وارد نمایید ', 'maxlength': 5}))

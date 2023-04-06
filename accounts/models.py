@@ -43,7 +43,7 @@ class Otp(models.Model):
     token = models.CharField('توکن اعتبارسنجی', max_length=155, null=True)
     phone_number = models.CharField('شماره موبایل', max_length=11)
     code = models.CharField(' کد فعالسازی', max_length=5)
-    expiration = models.DateTimeField(' تاریخ انقضا ', auto_now_add=True)
+    expiration = models.DateTimeField('تاریخ انقضا', null=True, blank=True)
 
     def __str__(self):
         return F" : شماره موبایل  {self.phone_number}"
