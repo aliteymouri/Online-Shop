@@ -84,3 +84,27 @@ class CheckOtpForm(forms.Form):
     code = forms.CharField(
         widget=forms.TextInput(
             {'class': 'input-field', 'placeholder': ' کد تایید را وارد نمایید ', 'maxlength': 5}))
+
+
+class EditPersonalInfoForm(forms.ModelForm):
+    avatar = forms.ImageField(required=False)
+
+    fullname = forms.CharField(
+        widget=forms.TextInput(
+            {'class': 'input-field', 'placeholder': 'نام و نام خوانوادگی خود را وارد نمایید '}))
+    melli_code = forms.IntegerField(
+        widget=forms.TextInput({'class': 'input-field', 'placeholder': ' کد ملی خود را وارد کنید '}))
+
+    phone_number = forms.CharField(
+        widget=forms.TextInput(
+            {'class': 'input-field', 'placeholder': ' شماره موبایل خود را وارد نمایید ', 'maxlength': 11}),
+        validators=[check_number])
+    email = forms.EmailField(
+        widget=forms.TextInput(
+            {'class': 'input-field', 'placeholder': ' پست الکترونیک خود را وارد نمایید '}))
+    card_number = forms.CharField(
+        widget=forms.TextInput({'class': 'input-field', 'placeholder': 'شماره کارت خود را وارد نمایید '}))
+
+    class Meta:
+        model = User
+        fields = ['avatar', 'fullname', 'melli_code', 'phone_number', 'email', 'card_number']
