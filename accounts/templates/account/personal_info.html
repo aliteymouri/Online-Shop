@@ -787,7 +787,9 @@
                                     <div class="col-sm-12 col-md-6">
                                         <p>
                                             <span class="title">نام و نام خانوادگی :</span>
-                                            <span>-</span>
+                                            {% if instance.fullname %}
+                                                <span>{{ instance.fullname }}</span> {% else %} <span>-</span>
+                                            {% endif %}
                                         </p>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
@@ -805,7 +807,9 @@
                                     <div class="col-sm-12 col-md-6">
                                         <p>
                                             <span class="title">کد ملی :</span>
-                                            <span>-</span>
+                                            {% if instance.melli_code %}
+                                                <span>{{ instance.melli_code }}</span> {% else %} <span>-</span>
+                                            {% endif %}
                                         </p>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
