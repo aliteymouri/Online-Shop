@@ -39,7 +39,7 @@
             <div class="search-nav default">
                 <form action="">
                     <input type="text" placeholder="جستجو ...">
-                    <button type="submit"><img src="{% static 'img/search.png' %}" alt=""></button>
+                    <button type="submit"><img src="assets/img/search.png" alt=""></button>
                 </form>
                 <ul>
                     <li><a href="#"><i class="now-ui-icons users_single-02"></i></a></li>
@@ -51,7 +51,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <div class="logo-nav-res default text-center">
                 <a href="#">
-                    <img src="{% static 'img/logo.png' %}" height="36px" alt="">
+                    <img src="assets/img/logo.png" height="36px" alt="">
                 </a>
             </div>
             <ul class="navbar-nav default">
@@ -259,7 +259,7 @@
                 <div class="col-lg-2 col-md-3 col-sm-4 col-5">
                     <div class="logo-area default">
                         <a href="#">
-                            <img src="{% static 'img/logo.png' %}" alt="">
+                            <img src="assets/img/logo.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -267,7 +267,7 @@
                     <div class="search-area default">
                         <form action="" class="search">
                             <input type="text" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
-                            <button type="submit"><img src="{% static 'img/search.png' %}" alt=""></button>
+                            <button type="submit"><img src="assets/img/search.png" alt=""></button>
                         </form>
                     </div>
                 </div>
@@ -309,7 +309,7 @@
                                         <button class="basket-item-remove"></button>
                                         <div class="basket-item-content">
                                             <div class="basket-item-image">
-                                                <img alt="" src="{% static 'img/cart/2324935.jpg' %}">
+                                                <img alt="" src="assets/img/cart/2324935.jpg">
                                             </div>
                                             <div class="basket-item-details">
                                                 <div class="basket-item-title">هندزفری بلوتوث مدل S530
@@ -467,7 +467,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <img src="{% static 'img/1636.png' %}" alt="">
+                            <img src="assets/img/1636.png" alt="">
                         </ul>
                     </li>
                     <li class="list-item list-item-has-children mega-menu mega-menu-col-5">
@@ -606,7 +606,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <img src="{% static 'img/1636.png' %}" alt="">
+                            <img src="assets/img/1636.png" alt="">
                         </ul>
                     </li>
                     <li class="list-item list-item-has-children mega-menu mega-menu-col-5">
@@ -780,57 +780,84 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="col-12">
-                                <h1 class="title-tab-content">اطلاعات شخصی</h1>
+                                <h1 class="title-tab-content">ویرایش اطلاعات شخصی</h1>
                             </div>
                             <div class="content-section default">
                                 <div class="row">
-                                    <div class="col-sm-12 col-md-6">
-                                        <p>
-                                            <span class="title">نام و نام خانوادگی :</span>
-                                            {% if instance.fullname %}
-                                                <span>{{ instance.fullname }}</span> {% else %} <span>-</span>
-                                            {% endif %}
-                                        </p>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <p>
-                                            <span class="title">پست الکترونیک :</span>
-                                            <span>{{ instance.email }}</span>
-                                        </p>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <p>
-                                            <span class="title">شماره تلفن همراه:</span>
-                                            <span>{{ instance.phone_number }}</span>
-                                        </p>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <p>
-                                            <span class="title">کد ملی :</span>
-                                            {% if instance.melli_code %}
-                                                <span>{{ instance.melli_code }}</span> {% else %} <span>-</span>
-                                            {% endif %}
-                                        </p>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <p>
-                                            <span class="title">دریافت خبرنامه :</span>
-                                            <span>بله</span>
-                                        </p>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <p>
-                                            <span class="title">شماره کارت :</span>
-                                            <span>-</span>
-                                        </p>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <a href="{% url 'accounts:edit-personal-info' %}"
-                                           class="btn-link-border form-account-link">
-                                            ویرایش اطلاعات شخصی
-                                        </a>
+                                    <div class="col-12">
+                                        <h1 class="title-tab-content">حساب شخصی</h1>
                                     </div>
                                 </div>
+                                <form class="form-account">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-account-title">نام</div>
+                                            <div class="form-account-row">
+                                                <input class="input-field text-right" type="text"
+                                                       placeholder="نام خود را وارد نمایید">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-account-title">نام خانوادگی</div>
+                                            <div class="form-account-row">
+                                                <input class="input-field text-right" type="text"
+                                                       placeholder="نام خانوادگی خود را وارد نمایید">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-account-title">کد ملی</div>
+                                            <div class="form-account-row">
+                                                <input class="input-field" type="text"
+                                                       placeholder="کد ملی خود را وارد نمایید">
+                                            </div>
+                                            <div class="form-account-agree">
+                                                <label class="checkbox-form checkbox-primary">
+                                                    <input type="checkbox">
+                                                    <span class="checkbox-check"></span>
+                                                </label>
+                                                <label for="agree">
+                                                    تبعه خارجی فاقد کد ملی هستم
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-account-title">شماره موبایل</div>
+                                            <div class="form-account-row">
+                                                <input class="input-field" type="text"
+                                                       placeholder="شماره موبایل خود را وارد نمایید">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-account-title">شماره کارت</div>
+                                            <div class="form-account-row">
+                                                <input class="input-field" type="text"
+                                                       placeholder=" شماره کارت خود را وارد نمایید">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-account-title">آدرس ایمیل</div>
+                                            <div class="form-account-row">
+                                                <input class="input-field" type="email"
+                                                       placeholder=" آدرس ایمیل خود را وارد نمایید">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 no-padding">
+                                        <div class="form-account-agree">
+                                            <label class="checkbox-form checkbox-primary">
+                                                <input type="checkbox" id="agree-newspaper">
+                                                <span class="checkbox-check"></span>
+                                            </label>
+                                            <label for="agree-newspaper">
+                                                اشتراک در خبرنامه دیجی کالا
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <button class="btn btn-default btn-lg">ذخیره</button>
+                                        <button class="btn btn-default btn-lg">انصراف</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -839,7 +866,7 @@
                     <div class="profile-box">
                         <div class="profile-box-header">
                             <div class="profile-box-avatar">
-                                <img src="{% static 'img/svg/user.svg' %}" alt="">
+                                <img src="assets/img/svg/user.svg" alt="">
                             </div>
                             <button data-toggle="modal" data-target="#myModal" class="profile-box-btn-edit">
                                 <i class="fa fa-pencil"></i>
@@ -859,35 +886,35 @@
                                             <ul class="profile-avatars default text-center">
                                                 <li>
                                                     <img class="profile-avatars-item"
-                                                         src="{% static 'img/svg/user.svg' %}">
+                                                         src="assets/img/svg/user.svg"></img>
                                                 </li>
                                                 <li>
                                                     <img class="profile-avatars-item"
-                                                         src="{% static 'img/svg/avatar-1.svg' %}">
+                                                         src="assets/img/svg/avatar-1.svg"></img>
                                                 </li>
                                                 <li>
                                                     <img class="profile-avatars-item"
-                                                         src="{% static 'img/svg/avatar-2.svg' %}">
+                                                         src="assets/img/svg/avatar-2.svg"></img>
                                                 </li>
                                                 <li>
                                                     <img class="profile-avatars-item"
-                                                         src="{% static 'img/svg/avatar-3.svg' %}">
-                                                </li>
-                                                <li>
-                                                    <img class=" profile-avatars-item"
-                                                         src="{% static 'img/svg/avatar-4.svg' %}">
+                                                         src="assets/img/svg/avatar-3.svg"></img>
                                                 </li>
                                                 <li>
                                                     <img class="profile-avatars-item"
-                                                         src="{% static 'img/svg/avatar-5.svg' %}">
+                                                         src="assets/img/svg/avatar-4.svg"></img>
                                                 </li>
                                                 <li>
                                                     <img class="profile-avatars-item"
-                                                         src="{% static 'img/svg/avatar-6.svg' %}">
+                                                         src="assets/img/svg/avatar-5.svg"></img>
                                                 </li>
                                                 <li>
                                                     <img class="profile-avatars-item"
-                                                         src="{% static 'img/svg/avatar-7.svg' %}">
+                                                         src="assets/img/svg/avatar-6.svg"></img>
+                                                </li>
+                                                <li>
+                                                    <img class="profile-avatars-item"
+                                                         src="assets/img/svg/avatar-7.svg"></img>
                                                 </li>
                                             </ul>
                                         </div>
@@ -896,16 +923,13 @@
                             </div>
                             <!-- Modal Core -->
                         </div>
-                        <div class=" profile-box-username">
-                            {% if instance.fullname %}{{ instance.fullname }} {% else %} - {% endif %}</div>
+                        <div class="profile-box-username">بهرامی راد</div>
                         <div class="profile-box-tabs">
-                            <a href="password-change.html"
-                               class="profile-box-tab profile-box-tab-access">
+                            <a href="password-change.html" class="profile-box-tab profile-box-tab-access">
                                 <i class="now-ui-icons ui-1_lock-circle-open"></i>
                                 تغییر رمز
                             </a>
-                            <a href="{% url 'accounts:log-out' %}"
-                               class="profile-box-tab profile-box-tab--sign-out">
+                            <a href="#" class="profile-box-tab profile-box-tab--sign-out">
                                 <i class="now-ui-icons media-1_button-power"></i>
                                 خروج از حساب
                             </a>
@@ -913,14 +937,13 @@
                     </div>
                     <div class="responsive-profile-menu show-md">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-secondary dropdown-toggle"
-                                    data-toggle="dropdown"
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-navicon"></i>
                                 حساب کاربری شما
                             </button>
                             <div class="dropdown-menu dropdown-menu-right text-right">
-                                <a href="{% url 'accounts:personal-info' %}" class="dropdown-item">
+                                <a href="profile.html" class="dropdown-item active-menu">
                                     <i class="now-ui-icons users_single-02"></i>
                                     پروفایل
                                 </a>
@@ -936,7 +959,7 @@
                                     <i class="now-ui-icons ui-2_favourite-28"></i>
                                     لیست علاقمندی ها
                                 </a>
-                                <a href="profile-personal-info.html" class="dropdown-item active-menu">
+                                <a href="profile-personal-info.html" class="dropdown-item">
                                     <i class="now-ui-icons business_badge"></i>
                                     اطلاعات شخصی
                                 </a>
@@ -947,7 +970,7 @@
                         <div class="profile-menu-header">حساب کاربری شما</div>
                         <ul class="profile-menu-items">
                             <li>
-                                <a href="profile.html">
+                                <a href="profile.html" class="active">
                                     <i class="now-ui-icons users_single-02"></i>
                                     پروفایل
                                 </a>
@@ -971,7 +994,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="" class="active">
+                                <a href="profile-personal-info.html">
                                     <i class="now-ui-icons business_badge"></i>
                                     اطلاعات شخصی
                                 </a>
@@ -995,31 +1018,31 @@
                 <div class="row">
                     <div class="service-item col">
                         <a href="#" target="_blank">
-                            <img src="{% static 'img/svg/delivery.svg' %}">
+                            <img src="assets/img/svg/delivery.svg">
                         </a>
                         <p>تحویل اکسپرس</p>
                     </div>
                     <div class="service-item col">
                         <a href="#" target="_blank">
-                            <img src="{% static 'img/svg/contact-us.svg' %}">
+                            <img src="assets/img/svg/contact-us.svg">
                         </a>
                         <p>پشتیبانی 24 ساعته</p>
                     </div>
                     <div class="service-item col">
                         <a href="#" target="_blank">
-                            <img src="{% static 'img/svg/payment-terms.svg' %}">
+                            <img src="assets/img/svg/payment-terms.svg">
                         </a>
                         <p>پرداخت درمحل</p>
                     </div>
                     <div class="service-item col">
                         <a href="#" target="_blank">
-                            <img src="{% static 'img/svg/return-policy.svg' %}">
+                            <img src="assets/img/svg/return-policy.svg">
                         </a>
                         <p>۷ روز ضمانت بازگشت</p>
                     </div>
                     <div class="service-item col">
                         <a href="#" target="_blank">
-                            <img src="{% static 'img/svg/origin-guarantee.svg' %}">
+                            <img src="assets/img/svg/origin-guarantee.svg">
                         </a>
                         <p>ضمانت اصل بودن کالا</p>
                     </div>
@@ -1115,10 +1138,8 @@
                     <div class="col-12 col-lg-2">شماره تماس: 021-123456789</div>
                     <div class="col-12 col-lg-2">آدرس ایمیل:<a href="#">info@digikala.com</a></div>
                     <div class="col-12 col-lg-4 text-center">
-                        <a href="#" target="_blank"><img src="{% static 'img/bazzar.png' %}" width="159" height="48"
-                                                         alt=""></a>
-                        <a href="#" target="_blank"><img src="{% static 'img/sibapp.png' %}" width="159" height="48"
-                                                         alt=""></a>
+                        <a href="#" target="_blank"><img src="assets/img/bazzar.png" width="159" height="48" alt=""></a>
+                        <a href="#" target="_blank"><img src="assets/img/sibapp.png" width="159" height="48" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -1139,23 +1160,23 @@
                         </p>
                     </div>
                     <div class="symbol col-12 col-lg-5">
-                        <a href="#" target="_blank"><img src="{% static 'img/symbol-01.png' %}" alt=""></a>
-                        <a href="#" target="_blank"><img src="{% static 'img/symbol-02.png' %}" alt=""></a>
+                        <a href="#" target="_blank"><img src="assets/img/symbol-01.png" alt=""></a>
+                        <a href="#" target="_blank"><img src="assets/img/symbol-02.png" alt=""></a>
                     </div>
                     <div class="col-12">
                         <div class="row">
                             <ul class="footer-partners default">
                                 <li class="col-md-3 col-sm-6">
-                                    <a href=""><img src="{% static 'img/footer/1.svg' %}" alt=""></a>
+                                    <a href=""><img src="assets/img/footer/1.svg" alt=""></a>
                                 </li>
                                 <li class="col-md-3 col-sm-6">
-                                    <a href=""><img src="{% static 'img/footer/2.svg' %}" alt=""></a>
+                                    <a href=""><img src="assets/img/footer/2.svg" alt=""></a>
                                 </li>
                                 <li class="col-md-3 col-sm-6">
-                                    <a href=""><img src="{% static 'img/footer/3.svg' %}" alt=""></a>
+                                    <a href=""><img src="assets/img/footer/3.svg" alt=""></a>
                                 </li>
                                 <li class="col-md-3 col-sm-6">
-                                    <a href=""><img src="{% static 'img/footer/4.svg' %}" alt=""></a>
+                                    <a href=""><img src="assets/img/footer/4.svg" alt=""></a>
                                 </li>
                             </ul>
                         </div>
