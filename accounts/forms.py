@@ -107,4 +107,5 @@ class EditPersonalInfoForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['avatar', 'fullname', 'melli_code', 'phone_number', 'email', 'card_number']
+        fields = ['avatar', 'fullname', 'melli_code',
+                  'phone_number', 'email', 'card_number']

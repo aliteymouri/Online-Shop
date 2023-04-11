@@ -88,5 +88,10 @@ class PersonalInfoView(View):
         return render(req, self.template_name, {'instance': req.user})
 
 
-class EditPersonalInfoView(TemplateView):
+class EditPersonalInfoView(View):
     template_name = 'account/edit-personal-info.html'
+    form_class = EditPersonalInfoForm
+
+    def get(self, req):
+        form = self.form_class(instance=req.user)
+        return render(req, self.template_name, {"form": form})

@@ -791,24 +791,33 @@
                                 <form class="form-account">
                                     <div class="row">
                                         <div class="col-sm-12 col-md-6">
-                                            <div class="form-account-title">نام</div>
+                                            <div class="form-account-title">نام و نام خوانوادگی</div>
                                             <div class="form-account-row">
-                                                <input class="input-field text-right" type="text"
-                                                       placeholder="نام خود را وارد نمایید">
+                                                {{ form.fullname }}
                                             </div>
                                         </div>
                                         <div class="col-sm-12 col-md-6">
-                                            <div class="form-account-title">نام خانوادگی</div>
+                                            <div class="form-account-title">شماره موبایل</div>
                                             <div class="form-account-row">
-                                                <input class="input-field text-right" type="text"
-                                                       placeholder="نام خانوادگی خود را وارد نمایید">
+                                                {{ form.phone_number }}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-account-title">شماره کارت</div>
+                                            <div class="form-account-row">
+                                                {{ form.card_number }}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-account-title">آدرس ایمیل</div>
+                                            <div class="form-account-row">
+                                                {{ form.email }}
                                             </div>
                                         </div>
                                         <div class="col-sm-12 col-md-6">
                                             <div class="form-account-title">کد ملی</div>
                                             <div class="form-account-row">
-                                                <input class="input-field" type="text"
-                                                       placeholder="کد ملی خود را وارد نمایید">
+                                                {{ form.melli_code }}
                                             </div>
                                             <div class="form-account-agree">
                                                 <label class="checkbox-form checkbox-primary">
@@ -820,28 +829,8 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12 col-md-6">
-                                            <div class="form-account-title">شماره موبایل</div>
-                                            <div class="form-account-row">
-                                                <input class="input-field" type="text"
-                                                       placeholder="شماره موبایل خود را وارد نمایید">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 col-md-6">
-                                            <div class="form-account-title">شماره کارت</div>
-                                            <div class="form-account-row">
-                                                <input class="input-field" type="text"
-                                                       placeholder=" شماره کارت خود را وارد نمایید">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 col-md-6">
-                                            <div class="form-account-title">آدرس ایمیل</div>
-                                            <div class="form-account-row">
-                                                <input class="input-field" type="email"
-                                                       placeholder=" آدرس ایمیل خود را وارد نمایید">
-                                            </div>
-                                        </div>
                                     </div>
+
                                     <div class="col-12 no-padding">
                                         <div class="form-account-agree">
                                             <label class="checkbox-form checkbox-primary">
@@ -866,7 +855,11 @@
                     <div class="profile-box">
                         <div class="profile-box-header">
                             <div class="profile-box-avatar">
-                                <img src="assets/img/svg/user.svg" alt="">
+                                {% if request.user.avatar %}
+                                    <img src="{{ request.avatar.url }}" alt="">
+                                    {% else %}
+                                    <img src="{% static 'img/svg/user.svg' %}" alt="">
+                                {% endif %}
                             </div>
                             <button data-toggle="modal" data-target="#myModal" class="profile-box-btn-edit">
                                 <i class="fa fa-pencil"></i>
