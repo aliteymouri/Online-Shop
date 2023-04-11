@@ -81,14 +81,14 @@ class CheckOtpView(FormView):
         return context
 
 
-class PersonalInfoView(View):
+class PersonalInfoView(RequiredLoginMixin,View):
     template_name = 'account/personal_info.html'
 
     def get(self, req):
         return render(req, self.template_name, {'instance': req.user})
 
 
-class EditPersonalInfoView(View):
+class EditPersonalInfoView(RequiredLoginMixin,View):
     template_name = 'account/edit-personal-info.html'
     form_class = EditPersonalInfoForm
 

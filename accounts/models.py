@@ -10,6 +10,7 @@ class User(AbstractBaseUser):
     email = models.EmailField("پست الکترونیک", unique=True)
     phone_number = models.CharField("شماره موبایل", max_length=11, unique=True, )
     fullname = models.CharField('نام و نام خوانوادگی', max_length=100, null=True, blank=True)
+    card_number = models.CharField("شماره کارت", max_length=16, null=True, blank=True)
     melli_code = models.CharField("کد ملی", max_length=10, blank=True)
     avatar = models.FileField(upload_to="users/profile", null=True,
                               blank=True, verbose_name='عکس پروفایل')
