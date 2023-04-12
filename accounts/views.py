@@ -102,3 +102,7 @@ class EditPersonalInfoView(RequiredLoginMixin, View):
             form.save()
             return redirect('accounts:personal-info')
         return render(req, self.template_name, {'form': form})
+
+
+
+
