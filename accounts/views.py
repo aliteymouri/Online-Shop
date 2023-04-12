@@ -81,17 +81,24 @@ class CheckOtpView(FormView):
         return context
 
 
-class PersonalInfoView(RequiredLoginMixin,View):
+class PersonalInfoView(RequiredLoginMixin, View):
     template_name = 'account/personal_info.html'
 
     def get(self, req):
         return render(req, self.template_name, {'instance': req.user})
 
 
-class EditPersonalInfoView(RequiredLoginMixin,View):
+class EditPersonalInfoView(RequiredLoginMixin, View):
     template_name = 'account/edit-personal-info.html'
     form_class = EditPersonalInfoForm
 
     def get(self, req):
         form = self.form_class(instance=req.user)
         return render(req, self.template_name, {"form": form})
+
+    def post(self, req):
+        form = self.form_class(req.POST, instance=req.user)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:personal-info')
+        return render(req, self.template_name, {'form': form})

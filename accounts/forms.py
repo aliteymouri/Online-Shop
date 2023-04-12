@@ -92,9 +92,9 @@ class EditPersonalInfoForm(forms.ModelForm):
     fullname = forms.CharField(
         widget=forms.TextInput(
             {'class': 'input-field', 'placeholder': 'نام و نام خوانوادگی خود را وارد نمایید '}))
-    melli_code = forms.IntegerField(
-        widget=forms.TextInput({'class': 'input-field', 'placeholder': ' کد ملی خود را وارد کنید '}))
-
+    melli_code = forms.IntegerField(required=False,
+                                    widget=forms.TextInput(
+                                        {'class': 'input-field', 'placeholder': ' کد ملی خود را وارد کنید '}))
     phone_number = forms.CharField(
         widget=forms.TextInput(
             {'class': 'input-field', 'placeholder': ' شماره موبایل خود را وارد نمایید ', 'maxlength': 11}),
@@ -102,8 +102,9 @@ class EditPersonalInfoForm(forms.ModelForm):
     email = forms.EmailField(
         widget=forms.TextInput(
             {'class': 'input-field', 'placeholder': ' پست الکترونیک خود را وارد نمایید '}))
-    card_number = forms.CharField(
-        widget=forms.TextInput({'class': 'input-field', 'placeholder': 'شماره کارت خود را وارد نمایید '}))
+    card_number = forms.CharField(required=False,
+                                  widget=forms.TextInput(
+                                      {'class': 'input-field', 'placeholder': 'شماره کارت خود را وارد نمایید '}))
 
     class Meta:
         model = User
