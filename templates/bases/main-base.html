@@ -2,23 +2,7 @@
 <!DOCTYPE html>
 <html lang="fa">
 
-<head>
-    <meta charset="utf-8"/>
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png' %}">
-    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-          name='viewport'/>
-    <title>Digikala</title>
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}"/>
-    <!-- CSS Files -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
-    <link href="{% static 'css/now-ui-kit.css' %}" rel="stylesheet"/>
-    <link href="{% static 'css/plugins/owl.carousel.css' %}" rel="stylesheet"/>
-    <link href="{% static 'css/plugins/owl.theme.default.min.css' %}" rel="stylesheet"/>
-    <link href="{% static 'css/main.css' %}" rel="stylesheet"/>
-</head>
+{% include 'include/head.html' %}
 
 <body class="index-page sidebar-collapse">
 
@@ -27,7 +11,7 @@
     <div class="container">
         <div class="navbar-translate">
             <a class="navbar-brand" href="#pablo">
-{#                <img src="{% static 'img/logo.png' %}" height="24px" alt="">#}
+                {#                <img src="{% static 'img/logo.png' %}" height="24px" alt="">#}
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
@@ -51,7 +35,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <div class="logo-nav-res default text-center">
                 <a href="#">
-{#                    <img src="{% static 'img/logo.png' %}" height="36px" alt="">#}
+                    {#                    <img src="{% static 'img/logo.png' %}" height="36px" alt="">#}
                 </a>
             </div>
             <ul class="navbar-nav default">
@@ -252,12 +236,12 @@
 
 <div class="wrapper default">
 
-  {% include 'include/header.html' %}
+    {% include 'include/header.html' %}
 
-   {% block main %}
+    {% block main %}
 
 
-   {% endblock  %}
+    {% endblock %}
 
 
     <footer class="main-footer default">
