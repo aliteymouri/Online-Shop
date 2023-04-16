@@ -65,7 +65,7 @@
         <div class=" profile-box-username">
             {% if instance.fullname %}{{ instance.fullname }} {% else %} - {% endif %}</div>
         <div class="profile-box-tabs">
-            <a href="password-change.html"
+            <a href="{% url 'accounts:change-password' %}"
                class="profile-box-tab profile-box-tab-access">
                 <i class="now-ui-icons ui-1_lock-circle-open"></i>
                 تغییر رمز
@@ -113,7 +113,7 @@
         <div class="profile-menu-header">حساب کاربری شما</div>
         <ul class="profile-menu-items">
             <li>
-                <a href="profile.html">
+                <a href="{% url 'accounts:personal-info' %}">
                     <i class="now-ui-icons users_single-02"></i>
                     پروفایل
                 </a>

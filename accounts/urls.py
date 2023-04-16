@@ -12,4 +12,6 @@ urlpatterns = [
 
     path('personal-info/', PersonalInfoView.as_view(), name='personal-info'),
     path('edit-personal-info/', EditPersonalInfoView.as_view(), name='edit-personal-info'),
+
+    path('change-password/', ChangePassView.as_view(), name='change-password'),
 ]
