@@ -104,5 +104,7 @@ class EditPersonalInfoView(RequiredLoginMixin, View):
         return render(req, self.template_name, {'form': form})
 
 
-class ChangePassView(RequiredLoginMixin, TemplateView):
+class ChangePassView(RequiredLoginMixin, FormView):
     template_name = 'account/change-password.html'
+    form_class = ChangePassForm
+

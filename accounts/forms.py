@@ -110,3 +110,17 @@ class EditPersonalInfoForm(forms.ModelForm):
         model = User
         fields = ['avatar', 'fullname', 'melli_code',
                   'phone_number', 'email', 'card_number']
+
+
+class ChangePassForm(forms.Form):
+    old_password = forms.CharField(
+        widget=forms.TextInput(
+            {'class': 'input-field', 'placeholder': 'رمز عبور قبلی خود را وارد نمایید '}))
+
+    new_password = forms.CharField(
+        widget=forms.TextInput(
+            {'class': 'input-field', 'placeholder': 'رمز عبور جدید خود را وارد نمایید '}))
+
+    repeat_new_password = forms.CharField(
+        widget=forms.TextInput(
+            {'class': 'input-field', 'placeholder': 'رمز عبور جدید خود را مجدد وارد نمایید '}))
