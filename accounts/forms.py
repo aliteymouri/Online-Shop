@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django import forms
 from .models import User
@@ -114,13 +115,21 @@ class EditPersonalInfoForm(forms.ModelForm):
 
 class ChangePassForm(forms.Form):
     old_password = forms.CharField(
-        widget=forms.TextInput(
+        widget=forms.PasswordInput(
             {'class': 'input-field', 'placeholder': 'رمز عبور قبلی خود را وارد نمایید '}))
 
     new_password = forms.CharField(
-        widget=forms.TextInput(
-            {'class': 'input-field', 'placeholder': 'رمز عبور جدید خود را وارد نمایید '}))
+        widget=forms.PasswordInput(
+            {'class': 'input-field', 'placeholder': 'رمز عبور جدید خود را وارد نمایید '}),
+        validators=[validate_password])
 
     repeat_new_password = forms.CharField(
-        widget=forms.TextInput(
+        widget=forms.PasswordInput(
             {'class': 'input-field', 'placeholder': 'رمز عبور جدید خود را مجدد وارد نمایید '}))
+
+    def clean_repeat_new_password(self):
+        new_password = self.cleaned_data.get("new_password")
+        repeat_new_password = self.cleaned_data.get("repeat_new_password")
+        if new_password and repeat_new_password and new_password != repeat_new_password:
+            raise ValidationError("رمز عبور مشابه نمیباشد")
+        return repeat_new_password

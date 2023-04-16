@@ -108,3 +108,13 @@ class ChangePassView(RequiredLoginMixin, FormView):
     template_name = 'account/change-password.html'
     form_class = ChangePassForm
 
+    def form_valid(self, form):
+        user = self.request.user
+        if user.check_password(form.cleaned_data.get('old_password')):
+            user.set_password(form.cleaned_data.get('new_password'))
+            user.save()
+            login(self.request, user, backend="django.contrib.auth.backends.ModelBackend")
+            return redirect('accounts:personal-info')
+        else:
+            form.add_error('old_password', messages.WRONG_OLD_PASSWORD)
+            return render(self.request, self.template_name, {'form': form})
