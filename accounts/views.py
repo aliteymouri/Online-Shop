@@ -104,9 +104,9 @@ class EditPersonalInfoView(RequiredLoginMixin, View):
         return render(req, self.template_name, {'form': form})
 
 
-class ChangePassView(RequiredLoginMixin, FormView):
+class ChangePasswordView(RequiredLoginMixin, FormView):
     template_name = 'account/change-password.html'
-    form_class = ChangePassForm
+    form_class = ChangePasswordForm
 
     def form_valid(self, form):
         user = self.request.user
@@ -120,10 +120,12 @@ class ChangePassView(RequiredLoginMixin, FormView):
             return render(self.request, self.template_name, {'form': form})
 
 
-class ForgotPassView(FormView):
-    template_name = 'account/forgot-password.html'
-    form_class = ForgotPassForm
+class ResetPasswordView(FormView):
+    template_name = 'account/reset-password.html'
+    form_class = ResetPasswordForm
+    success_url = reverse_lazy('accounts:reset-password-otp')
 
 
-class CheckResetPassOtp(TemplateView):
+class ResetPasswordOtpView(FormView):
     template_name = 'account/reset-password-otp.html'
+    form_class = ResetPasswordOtpForm

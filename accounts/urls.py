@@ -13,7 +13,7 @@ urlpatterns = [
     path('personal-info/', PersonalInfoView.as_view(), name='personal-info'),
     path('edit-personal-info/', EditPersonalInfoView.as_view(), name='edit-personal-info'),
 
-    path('change-password/', ChangePassView.as_view(), name='change-password'),
-    path('forgot-password/', ForgotPassView.as_view(), name='forgot-password'),
-    path('check-reset-pass/', CheckResetPassOtp.as_view(), name='check-reset-pass'),
+    path('change-password/', ChangePasswordView.as_view(), name='change-password'),
+    path('reset-password/', ResetPasswordView.as_view(), name='reset-password'),
+    path('verify-code/', ResetPasswordOtpView.as_view(), name='reset-password-otp'),
 ]

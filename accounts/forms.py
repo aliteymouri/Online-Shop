@@ -113,7 +113,7 @@ class EditPersonalInfoForm(forms.ModelForm):
                   'phone_number', 'email', 'card_number']
 
 
-class ChangePassForm(forms.Form):
+class ChangePasswordForm(forms.Form):
     old_password = forms.CharField(
         widget=forms.PasswordInput(
             {'class': 'input-field', 'placeholder': 'رمز عبور قبلی خود را وارد نمایید '}))
@@ -135,7 +135,7 @@ class ChangePassForm(forms.Form):
         return repeat_new_password
 
 
-class ForgotPassForm(forms.Form):
+class ResetPasswordForm(forms.Form):
     phone_number = forms.CharField(
         widget=forms.TextInput(
             {'class': 'input-field', 'placeholder': ' شماره موبایل خود را برای بازیابی گذرواژه وارد نمایید ',
@@ -145,3 +145,10 @@ class ForgotPassForm(forms.Form):
         if not User.objects.filter(phone_number=self.cleaned_data.get('phone_number')):
             raise ValidationError('کاربری با این شماره موبایل در سایت وجود ندارد')
         return self.cleaned_data.get('phone_number')
+
+
+class ResetPasswordOtpForm(CheckOtpForm):
+    new_password = forms.CharField(
+        widget=forms.PasswordInput(
+            {'class': 'input-field', 'placeholder': 'رمز عبور جدید خود را وارد نمایید '}),
+        validators=[validate_password])
