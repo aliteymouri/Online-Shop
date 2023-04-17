@@ -15,4 +15,5 @@ urlpatterns = [
 
     path('change-password/', ChangePassView.as_view(), name='change-password'),
     path('forgot-password/', ForgotPassView.as_view(), name='forgot-password'),
+    path('check-reset-pass/', CheckResetPassOtp.as_view(), name='check-reset-pass'),
 ]

@@ -70,7 +70,7 @@ class CheckOtpView(FormView):
             return render(self.request, self.template_name, {"form": form})
         otp.delete()
         User.objects.get(phone_number=otp.phone_number).delete()
-        form.add_error('code', messages.EXPIRED_OTP)
+        form.add_error('code', messages.EXPIRES_OTP)
         return render(self.request, self.template_name, {"form": form})
 
     def get_context_data(self, **kwargs):
@@ -123,3 +123,7 @@ class ChangePassView(RequiredLoginMixin, FormView):
 class ForgotPassView(FormView):
     template_name = 'account/forgot-password.html'
     form_class = ForgotPassForm
+
+
+class CheckResetPassOtp(TemplateView):
+    template_name = 'account/reset-password-otp.html'

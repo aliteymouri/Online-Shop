@@ -2,7 +2,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django import forms
-from .models import User
+from .models import *
 
 
 def check_number(value):
