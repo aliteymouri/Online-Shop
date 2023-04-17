@@ -120,5 +120,6 @@ class ChangePassView(RequiredLoginMixin, FormView):
             return render(self.request, self.template_name, {'form': form})
 
 
-class ForgotPassView(TemplateView):
+class ForgotPassView(FormView):
     template_name = 'account/forgot-password.html'
+    form_class = ForgotPassForm

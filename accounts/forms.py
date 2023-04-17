@@ -133,3 +133,15 @@ class ChangePassForm(forms.Form):
         if new_password and repeat_new_password and new_password != repeat_new_password:
             raise ValidationError("رمز عبور مشابه نمیباشد")
         return repeat_new_password
+
+
+class ForgotPassForm(forms.Form):
+    phone_number = forms.CharField(
+        widget=forms.TextInput(
+            {'class': 'input-field', 'placeholder': ' شماره موبایل خود را برای بازیابی گذرواژه وارد نمایید ',
+             'maxlength': 11}), validators=[check_number])
+
+    def clean_phone_number(self):
+        if not User.objects.filter(phone_number=self.cleaned_data.get('phone_number')):
+            raise ValidationError('کاربری با این شماره موبایل در سایت وجود ندارد')
+        return self.cleaned_data.get('phone_number')
