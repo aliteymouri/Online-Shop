@@ -118,3 +118,7 @@ class ChangePassView(RequiredLoginMixin, FormView):
         else:
             form.add_error('old_password', messages.WRONG_OLD_PASSWORD)
             return render(self.request, self.template_name, {'form': form})
+
+
+class ForgotPassView(TemplateView):
+    template_name = 'account/forgot-password.html'
