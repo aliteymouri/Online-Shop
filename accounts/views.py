@@ -126,7 +126,7 @@ class ResetPasswordView(FormView):
 
     def form_valid(self, form):
         token = uuid4().hex
-        code = randint(10000, 99999)
+        code = randint(100000, 999999)
         expiration = timezone.localtime(timezone.now()) + timezone.timedelta(minutes=15)
         Otp.objects.create(token=token, code=code, expiration=expiration,
                            phone_number=form.cleaned_data.get('phone_number'))
