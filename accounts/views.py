@@ -159,3 +159,10 @@ class ResetPasswordOtpView(FormView):
         otp.delete()
         form.add_error('code', messages.EXPIRES_OTP)
         return render(self.request, self.template_name, {"form": form})
+
+    def get_context_data(self, **kwargs):
+        context = super(ResetPasswordOtpView, self).get_context_data(**kwargs)
+        token = self.request.GET.get("token")
+        otp = Otp.objects.get(token=token)
+        context["user"] = User.objects.get(phone_number=otp.phone_number)
+        return context
