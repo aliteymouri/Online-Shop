@@ -74,7 +74,8 @@ class SignUpForm(forms.ModelForm):
         widget=forms.TextInput(
             {'class': 'input-field', 'placeholder': ' پست الکترونیک خود را وارد نمایید '}))
     password = forms.CharField(
-        widget=forms.PasswordInput({'class': 'input-field', 'placeholder': ' رمز عبور خود را وارد نمایید '}))
+        widget=forms.PasswordInput({'class': 'input-field', 'placeholder': ' رمز عبور خود را وارد نمایید '}),
+        validators=[validate_password])
 
     class Meta:
         model = User

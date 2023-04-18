@@ -123,9 +123,39 @@ class ChangePasswordView(RequiredLoginMixin, FormView):
 class ResetPasswordView(FormView):
     template_name = 'account/reset-password.html'
     form_class = ResetPasswordForm
-    success_url = reverse_lazy('accounts:reset-password-otp')
+
+    def form_valid(self, form):
+        token = uuid4().hex
+        code = randint(10000, 99999)
+        expiration = timezone.localtime(timezone.now()) + timezone.timedelta(minutes=15)
+        Otp.objects.create(token=token, code=code, expiration=expiration,
+                           phone_number=form.cleaned_data.get('phone_number'))
+        print(code)
+
+        # SMS.verification(
+        #     {'receptor': form.cleaned_data["phone_number"], 'type': '1', 'templates': 'randecode', 'param1': code}
+        # )
+
+        return redirect(reverse_lazy('accounts:reset-password-otp') + f'?token={token}')
 
 
 class ResetPasswordOtpView(FormView):
     template_name = 'account/reset-password-otp.html'
     form_class = ResetPasswordOtpForm
+
+    def form_valid(self, form):
+        token = self.request.GET.get("token")
+        otp = Otp.objects.get(token=token)
+        if otp.is_not_expired():
+            if form.cleaned_data['code'] == otp.code:
+                user = User.objects.get(phone_number=otp.phone_number)
+                user.set_password(form.cleaned_data.get('new_password'))
+                user.save()
+                login(self.request, user, backend="django.contrib.auth.backends.ModelBackend")
+                otp.delete()
+                return redirect('accounts:personal-info')
+            form.add_error('code', messages.WRONG_OTP_CODE)
+            return render(self.request, self.template_name, {"form": form})
+        otp.delete()
+        form.add_error('code', messages.EXPIRES_OTP)
+        return render(self.request, self.template_name, {"form": form})
