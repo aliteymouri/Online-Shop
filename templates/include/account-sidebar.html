@@ -86,62 +86,74 @@
                 حساب کاربری شما
             </button>
             <div class="dropdown-menu dropdown-menu-right text-right">
-                <a href="{% url 'accounts:personal-info' %}" class="dropdown-item">
-                    <i class="now-ui-icons users_single-02"></i>
-                    پروفایل
-                </a>
-                <a href="profile-orders.html" class="dropdown-item">
-                    <i class="now-ui-icons shopping_basket"></i>
-                    همه سفارش ها
-                </a>
-                <a href="profile-orders-return.html" class="dropdown-item">
-                    <i class="now-ui-icons files_single-copy-04"></i>
-                    درخواست مرجوعی
-                </a>
-                <a href="profile-favorites.html" class="dropdown-item">
-                    <i class="now-ui-icons ui-2_favourite-28"></i>
-                    لیست علاقمندی ها
-                </a>
-                <a href="profile-personal-info.html" class="dropdown-item active-menu">
-                    <i class="now-ui-icons business_badge"></i>
-                    اطلاعات شخصی
-                </a>
+
+                {% with request.resolver_match.url_name as url_name %}
+                    <a href="{% url 'accounts:personal-info' %}"
+                       class="dropdown-item {% if url_name == 'personal-info' %} active-menu {% endif %}">
+                        <i class="now-ui-icons users_single-02"></i>
+                        پروفایل
+                    </a>
+                    <a href="profile-orders.html" class="dropdown-item">
+                        <i class="now-ui-icons shopping_basket"></i>
+                        همه سفارش ها
+                    </a>
+                    <a href="profile-orders-return.html" class="dropdown-item">
+                        <i class="now-ui-icons files_single-copy-04"></i>
+                        درخواست مرجوعی
+                    </a>
+                    <a href="profile-favorites.html" class="dropdown-item">
+                        <i class="now-ui-icons ui-2_favourite-28"></i>
+                        لیست علاقمندی ها
+                    </a>
+                    <a href="{% url 'accounts:edit-personal-info' %}"
+                       class="dropdown-item {% if url_name == 'edit-personal-info' %} active-menu {% endif %}">
+                        <i class="now-ui-icons business_badge"></i>
+                        اطلاعات شخصی
+                    </a>
+                {% endwith %}
+
+
             </div>
         </div>
     </div>
     <div class="profile-menu hidden-md">
         <div class="profile-menu-header">حساب کاربری شما</div>
-        <ul class="profile-menu-items">
-            <li>
-                <a href="{% url 'accounts:personal-info' %}">
-                    <i class="now-ui-icons users_single-02"></i>
-                    پروفایل
-                </a>
-            </li>
-            <li>
-                <a href="profile-orders.html">
-                    <i class="now-ui-icons shopping_basket"></i>
-                    همه سفارش ها
-                </a>
-            </li>
-            <li>
-                <a href="profile-orders-return.html">
-                    <i class="now-ui-icons files_single-copy-04"></i>
-                    درخواست مرجوعی
-                </a>
-            </li>
-            <li>
-                <a href="profile-favorites.html">
-                    <i class="now-ui-icons ui-2_favourite-28"></i>
-                    لیست علاقمندی ها
-                </a>
-            </li>
-            <li>
-                <a href="" class="active">
-                    <i class="now-ui-icons business_badge"></i>
-                    اطلاعات شخصی
-                </a>
-            </li>
-        </ul>
+        {% with request.resolver_match.url_name as url_name %}
+            <ul class="profile-menu-items">
+                <li>
+                    <a href="{% url 'accounts:personal-info' %}"
+                       class="{% if url_name == 'personal-info' %} active {% endif %}">
+                        <i class="now-ui-icons users_single-02"></i>
+                        پروفایل
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="now-ui-icons shopping_basket"></i>
+                        همه سفارش ها
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="now-ui-icons files_single-copy-04"></i>
+                        درخواست مرجوعی
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="now-ui-icons ui-2_favourite-28"></i>
+                        لیست علاقمندی ها
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'accounts:edit-personal-info' %}"
+                       class="{% if url_name == 'edit-personal-info' %} active {% endif %}">
+                        <i class="now-ui-icons business_badge"></i>
+                        اطلاعات شخصی
+                    </a>
+                </li>
+            </ul>
+        {% endwith %}
+
     </div>
 </div>
