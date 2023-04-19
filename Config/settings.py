@@ -144,9 +144,9 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
                            'accounts.authentication.EmailAuthBackend']
 
 # Admin Interface Languages
-LANGUAGES = (
-    ("en", ("English")),
-    ("fa", ("Persian")),
-)
+LANGUAGES = [
+    ('fa', 'Persian'),
+    ('en', 'English'),
+]
 X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
