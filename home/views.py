@@ -9,3 +9,7 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         # ...
         return context
+
+
+def error_404_view(req, exception):
+    return render(req, '404.html')
